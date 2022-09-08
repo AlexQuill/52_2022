@@ -9,7 +9,10 @@ function App() {
 
   function handleAddWord() {
     const newWord = wordRef.current.value
-    setWords (prevWords => {
+    if (newWord === '' || newWord === ' ') return
+    const wordInput = document.getElementById('wordInput')
+    wordInput.value='';
+    setWords(prevWords => {
       return [...prevWords, {id: uuidv4(), text: newWord}] // newword soon to be part of an object with an ID and a "word" field 
     })
   }
@@ -22,9 +25,9 @@ function App() {
 
   return (
     <>
-      <WordList words = {words}/>
-      <input ref = {wordRef} type="text" onKeyDown = {inputWord}/>
+      <input ref = {wordRef} type = "text" id = 'wordInput' onKeyDown = {inputWord}/>
       <button onClick = {handleAddWord}> Add Word </button>
+      <WordList words = {words}/>
     </>
   );
 }
