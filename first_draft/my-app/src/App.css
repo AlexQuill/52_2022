@@ -1,0 +1,23 @@
+
+.wordcardHolder {
+    background-color: red;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.wordCard {
+    margin: 50px;
+    min-width: 300px;
+}
+
+.dragBox {
+    cursor: move;
+    color: black;
+    max-width: 215px;
+    border-radius: 5px;
+    padding: 1em;
+    margin: 100px;
+    user-select: none;
+  }
+  
