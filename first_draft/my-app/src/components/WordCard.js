@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import '../App.css'
 
-export default function WordCard({ word, editWord, editDescription, editGroup, group, allGroups }) {
+export default function WordCard({ word, editWord, editDescription, editGroup, deleteWord, thisGroup, allGroups }) {
 
   // every card has a word that is a state variable
   // initiatilized as word
@@ -70,12 +70,18 @@ export default function WordCard({ word, editWord, editDescription, editGroup, g
       })
   }
 
+  function handleDeleteWord(){
+    deleteWord(currWord)
+  }
+
   function renderGroupDropdown() {
     return (
-      <select name="groups" id="groupsDropDown" ref = {groupRef} value={group} onChange={changeGroup}>
+      <select name="groups" id="groupsDropDown" ref = {groupRef} onChange={changeGroup}>
         {allGroups.map((group) => {
-          if (group.name === group) return <option selected>{group.name}</option>
-          else return <option>{group.name}</option>
+          console.log(thisGroup)
+          console.log("groupname: " + group.name)
+          if (group.name === thisGroup.name) return <option value={group.name} selected>{group.name}</option>
+          else return <option value={group.name}>{group.name}</option>
         }
          )}
       </select>
@@ -103,6 +109,9 @@ export default function WordCard({ word, editWord, editDescription, editGroup, g
         <Button size="small" onClick={revealDescription}>Reveal Description</Button>
         <Button size="small" onClick={allowEditDescription}>Edit Description</Button>
         <Button size="small" onClick={allowEditWord}>Edit Word</Button>
+      </CardActions>
+      <CardActions>
+        <Button size="small" onClick={handleDeleteWord}>Delete word</Button>
       </CardActions>
     </Card>
   );

@@ -7,7 +7,7 @@ import './App.css'
 function App() {
 
   const [words, setWords] = useState([])
-  const [wordGroups, setGroups] = useState([{id: uuidv4(), name: "sports", description: "Sports words"},{id: uuidv4(), name: "Family", description: "Family words"}])
+  const [wordGroups, setGroups] = useState([{id: uuidv4(), name: "sports", description: "Sports words"},{id: uuidv4(), name: "Family", description: "Family words"}, {id: uuidv4(), name: "weather", description: "Weather words"}])
   const [alreadyExistsWarning, setAEWarning] = useState(false)
   const wordRef = useRef() // expose this variable to be (1) attached to an html element and (2) modified in js
   const groupRef = useRef() // expose this variable to be (1) attached to an html element and (2) modified in js
@@ -26,6 +26,10 @@ function App() {
     setWords(prevWords => {
       return [...prevWords, {id: uuidv4(), text: newWord, group: "sports", description: "this the Default description for a card"}] 
     })
+  }
+
+  function handleDeleteWord(oldWord) {
+    setWords(words.filter((word) => word.text !== oldWord.text))
   }
 
   function inputWord(e) {
@@ -89,6 +93,7 @@ function App() {
       editWord = {editWord} 
       editDescription = {editDescription} 
       editGroup = {editGroup}
+      deleteWord = {handleDeleteWord}
       group={group}
       allGroups = {wordGroups}/>
     )

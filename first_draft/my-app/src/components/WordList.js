@@ -7,7 +7,7 @@ import Draggable from 'react-draggable'
 // to use state, we need to import the usestate hook
 
 // we can get the props that we've passed in here! 
-export default function WordList({ words, editWord, editDescription, group, editGroup, allGroups }) {
+export default function WordList({ words, editWord, editDescription, deleteWord, group, editGroup, allGroups }) {
     return (
         // Key allows react to only re-render the components that are actually changing in a list
         // todos.map(todo => <><Todo key = {todo.id} todo={todo} toggleTodo = {toggleTodo}/> <br /></>)
@@ -19,7 +19,7 @@ export default function WordList({ words, editWord, editDescription, group, edit
                 {words.map(word => 
                 <Draggable>
                     <div className="dragBox">
-                        <WordCard key = {uuidv4()} word={word} editWord={editWord} editDescription={editDescription} editGroup={editGroup} group={group} allGroups={allGroups}/>
+                        <WordCard key = {uuidv4()} word={word} editWord={editWord} editDescription={editDescription} editGroup={editGroup} deleteWord = {deleteWord} thisGroup={group} allGroups={allGroups}/>
                     </div>
                 </Draggable>
                 )}
