@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import {v4 as uuidv4} from 'uuid';
 import WordList from './components/WordList'
+import SubmitWordForm from './components/SubmitWordForm'
 import './App.css'
 
 
@@ -44,7 +45,6 @@ function App() {
     if (newGroup === '' || newGroup === ' ') return
     for (const group of wordGroups) {
       if (group.name === newGroup) {
-        alert('group: ' + newGroup +  ' already exists!')
         return
       }
     }
@@ -106,6 +106,7 @@ function App() {
       <button onClick = {handleAddWord}> Add Word </button> {alreadyExistsWarning ? <div>Word already exists</div> : null}
       <input ref = {groupRef} type = "text" id = 'groupInput' onKeyDown = {inputGroup}/>
       <button onClick = {() => alert('adding group')}> Add Group </button> 
+      <SubmitWordForm allGroups = {wordGroups}/>
       {renderGroups()}
     </>
   );

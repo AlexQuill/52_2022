@@ -42,7 +42,6 @@ export default function WordCard({ word, editWord, editDescription, editGroup, d
     const oldWord = currWord
     const newWord = wordRef.current.value
     if (newWord === '' || newWord === ' ') return
-    console.log('sending to DB')
     editWord(oldWord, newWord)
     flipEditWord(!showEditWordField)
     setWord((oldWord) => {
